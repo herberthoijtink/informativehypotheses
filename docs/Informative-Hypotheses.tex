@@ -1,0 +1,326 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Informative Hypotheses},
+  pdfauthor={Herbert Hoijtink, Nikola Sekulovski},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+
+\title{Informative Hypotheses}
+\author{Herbert Hoijtink, Nikola Sekulovski}
+\date{2021-09-30}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{introduction}{%
+\chapter{Introduction}\label{introduction}}
+
+This is a template GitBook based on \href{https://cjvanlissa.github.io/gitbook-demo/}{\emph{A GitBook Example for Teaching}} and \href{https://bookdown.org/yihui/bookdown/}{\emph{bookdown: Authoring Books and Technical Documents with R Markdown}}.
+
+\hypertarget{monte-carlo-simulations}{%
+\chapter{Monte Carlo Simulations}\label{monte-carlo-simulations}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\CommentTok{# \{-\} no chapter number}
+\CommentTok{# see Appendix.Rmd how to make parts in a book}
+\CommentTok{# don't forget library(bookdown)}
+\CommentTok{# R - help -cheatsheets}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{the-confidence-interval}{%
+\section{The Confidence Interval}\label{the-confidence-interval}}
+
+In this exercise I will try to repeat the example given by \href{https://www.gerkovink.com/markup/Wk1/Solution_to_Ex1.html}{Gerko Vink}
+
+The main idea of this exercise is to illustrate the nature of the \emph{Confidence Interval} as described by \href{http://www.stat.cmu.edu/~brian/905-2008/papers/neyman-1934-jrss.pdf}{Neyman (1934)}
+
+We set a seed to make our results reproducible:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{6465}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  The first step is to take 100 samples (in this case of size 800) from a \emph{normal distributuon} with \(\mu = 0\) and \(\sigma = 1\):
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{samples <-plyr}\OperatorTok{::}\KeywordTok{rlply}\NormalTok{(}\DecValTok{100}\NormalTok{, }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{800}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Secondly, we need to calculate for the mean of each sample: the absolute bias; standard error lower bound of the 95\% confidence interval and upper bound of the 95\% confidence interval.
+\end{itemize}
+
+We can construct a function that does this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{samp_function <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+ 
+\NormalTok{  m <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(x)}
+\NormalTok{  n <-}\StringTok{ }\KeywordTok{length}\NormalTok{(x)}
+\NormalTok{  se <-}\StringTok{ }\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(n)}
+\NormalTok{  bias <-}\StringTok{ }\KeywordTok{abs}\NormalTok{(}\OperatorTok{-}\DecValTok{0} \OperatorTok{-}\StringTok{ }\NormalTok{m)}
+\NormalTok{  df <-}\StringTok{ }\NormalTok{n }\OperatorTok{-}\StringTok{ }\DecValTok{1}
+\NormalTok{  interval <-}\StringTok{ }\KeywordTok{qt}\NormalTok{(.}\DecValTok{975}\NormalTok{, df) }\OperatorTok{*}\StringTok{ }\NormalTok{se}
+  \KeywordTok{return}\NormalTok{(}\KeywordTok{c}\NormalTok{(m, bias, se, m }\OperatorTok{-}\StringTok{ }\NormalTok{interval, m }\OperatorTok{+}\StringTok{ }\NormalTok{interval))}
+
+\NormalTok{\}}
+
+\NormalTok{format <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Mean"}\NormalTok{ =}\StringTok{ }\DecValTok{0}\NormalTok{, }\StringTok{"Bias"}\NormalTok{ =}\StringTok{ }\DecValTok{0}\NormalTok{, }\StringTok{"Std.Err"}\NormalTok{ =}\StringTok{ }\DecValTok{0}\NormalTok{, }\StringTok{"Lower"}\NormalTok{ =}\StringTok{ }\DecValTok{0}\NormalTok{, }\StringTok{"Upper"}\NormalTok{ =}\StringTok{ }\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now we use the constructed function \texttt{samp\_function} on all 100 samples contained in the object \texttt{samples}. And we also add a new column to the results that indicates which CI of the respective samples does contain \(\mu\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{results <-}\StringTok{ }\NormalTok{samples }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{vapply}\NormalTok{(., samp_function, format) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{t }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{as_tibble }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Covered =} \KeywordTok{ifelse}\NormalTok{(Lower }\OperatorTok{<}\StringTok{ }\DecValTok{0} \OperatorTok{&}\StringTok{ }\NormalTok{Upper }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+We can also add a table with the sample statistics of the samples whose CI's do not contain \(\mu\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# the results contains the table content that is piped into the table}
+\NormalTok{results }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Covered }\OperatorTok{==}\DecValTok{0}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{kableExtra}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\DataTypeTok{caption =} \StringTok{"Here is a table of the samples"}\NormalTok{ )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-6}Here is a table of the samples}
+\centering
+\begin{tabular}[t]{r|r|r|r|r|r}
+\hline
+Mean & Bias & Std.Err & Lower & Upper & Covered\\
+\hline
+-0.0945589 & 0.0945589 & 0.0353553 & -0.1639592 & -0.0251585 & 0\\
+\hline
+0.0740058 & 0.0740058 & 0.0353553 & 0.0046055 & 0.1434062 & 0\\
+\hline
+\end{tabular}
+\end{table}
+
+And finally we can also make a nice plot illustrating everything that we did so far.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# in the line above also the size of the figure can be adjusted}
+\NormalTok{lims <-}\StringTok{ }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymax =}\NormalTok{ results}\OperatorTok{$}\NormalTok{Upper, }\DataTypeTok{ymin =}\NormalTok{ results}\OperatorTok{$}\NormalTok{Lower)}
+\KeywordTok{ggplot}\NormalTok{(results, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y=}\NormalTok{Mean, }\DataTypeTok{x=}\DecValTok{1}\OperatorTok{:}\DecValTok{100}\NormalTok{, }\DataTypeTok{colour =}\NormalTok{ Covered)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_hline}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{yintercept =} \DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_pointrange}\NormalTok{(lims) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Simulations"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Means and 95% Confidence Intervals"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Use of `results$Upper` is discouraged. Use `Upper` instead.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Use of `results$Lower` is discouraged. Use `Lower` instead.
+\end{verbatim}
+
+\includegraphics{Informative-Hypotheses_files/figure-latex/unnamed-chunk-7-1.pdf}
+In this case only two out of 100 CI's do not include the true population mean.
+
+\hypertarget{the-central-limit-theorem}{%
+\section{The Central Limit Theorem}\label{the-central-limit-theorem}}
+
+Here we will also try to illustrate the \href{https://en.wikipedia.org/wiki/Central_limit_theorem}{Central Limit Theorem}, in it's most basic form, with a very simple example.
+
+First we draw 1000 samples (again of size 800), form , say, a \emph{Poisson} distribution, of course we could've drawn them from a uniform or an exponential as well.
+
+Now we calculate the mean for each sample:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{means <-}\StringTok{ }\NormalTok{samples_}\DecValTok{2} \OperatorTok{%>%}
+\StringTok{  }\KeywordTok{lapply}\NormalTok{(., mean) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{as.data.frame}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{t}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+And now we plot a histogram of the resulting means:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(}\KeywordTok{t}\NormalTok{(means))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Informative-Hypotheses_files/figure-latex/unnamed-chunk-10-1.pdf}
+\caption{\label{fig:unnamed-chunk-10}Histogram of the sampling distribution of the mean}
+\end{figure}
+
+\hypertarget{literature}{%
+\chapter*{Literature}\label{literature}}
+\addcontentsline{toc}{chapter}{Literature}
+
+\hypertarget{appendix-appendix}{%
+\appendix}
+
+
+\hypertarget{appendix-a}{%
+\chapter*{Appendix A}\label{appendix-a}}
+\addcontentsline{toc}{chapter}{Appendix A}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}
