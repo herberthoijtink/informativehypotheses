@@ -4,7 +4,7 @@ bookdown::gitbook:
     toc:
       before: |
        <li><a href="./">A GitBook template</a></li>
-    edit: https://github.com/sekulovskin/gitbook-template-/edit/master/%s
+    edit: https://github.com/herberthoijtink/informativehypotheses/edit/master/%s
     download: ["pdf"]
 bookdown::pdf_book:
   includes:

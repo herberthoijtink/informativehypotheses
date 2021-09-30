@@ -2,6 +2,10 @@
 
 ```{r, warning=F, message=F}
 library(tidyverse)
+# {-} no chapter number
+# see Appendix.Rmd how to make parts in a book
+# don't forget library(bookdown)
+# R - help -cheatsheets
 ```
 
 ## The Confidence Interval
@@ -52,6 +56,7 @@ results <- samples %>%
 We can also add a table with the sample statistics of the samples whose CI's do not contain $\mu$.
 
 ```{r}
+# the results contains the table content that is piped into the table
 results %>%
   filter(Covered ==0) %>%
   kableExtra::kable(caption = "Here is a table of the samples" )
@@ -60,6 +65,7 @@ results %>%
 And finally we can also make a nice plot illustrating everything that we did so far.
 
 ```{r, fig.cap= "Here is a plot of the CI's"}
+# in the line above also the size of the figure can be adjusted
 lims <- aes(ymax = results$Upper, ymin = results$Lower)
 ggplot(results, aes(y=Mean, x=1:100, colour = Covered)) + 
   geom_hline(aes(yintercept = 0)) + 
@@ -76,7 +82,8 @@ Here we will also try to illustrate the [Central Limit Theorem](https://en.wikip
 
 First we draw 1000 samples (again of size 800), form , say, a *Poisson* distribution, of course we could've drawn them from a uniform or an exponential as well.
 
-```{r}
+```{r, include = FALSE}
+# include = FALSE means don't include the code in the book
 samples_2 <- samples <-plyr::rlply(1000, rpois(800, 2))
 ```
 

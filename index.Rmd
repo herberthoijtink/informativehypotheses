@@ -1,9 +1,9 @@
 --- 
-title: "A GitBook template"
-author: "Nikola Sekulovski"
+title: "Informative Hypotheses"
+author: "Herbert Hoijtink, Nikola Sekulovski"
 date: "`r Sys.Date()`"
 documentclass: book
-github-repo: sekulovskin/gitbook-template-
+github-repo: herberthoijtink/informativehypotheses
 link-citations: yes
 bibliography:
 - book.bib
