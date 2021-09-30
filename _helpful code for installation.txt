@@ -1,0 +1,4 @@
+install.packages("bookdown")
+install.packages("tinytex")
+tinytex::install_tinytex()
+git2r::config(global = TRUE, user.name = "your.name", user.email = "your.email")

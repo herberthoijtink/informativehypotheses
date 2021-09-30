@@ -1,0 +1,11 @@
+book_filename: "gitbook-template-"
+rmd_files: ["index.Rmd",
+            "Chapter_2.Rmd",
+            "Chapter_3.Rmd",
+            "Literature.Rmd",
+            "Appendix.Rmd"]
+output_dir: "docs"
+language:
+  ui:
+    chapter_name: "Chapter "
+delete_merged_file: true

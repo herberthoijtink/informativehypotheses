@@ -1,0 +1,14 @@
+bookdown::gitbook:
+  css: style.css
+  config:
+    toc:
+      before: |
+       <li><a href="./">A GitBook template</a></li>
+    edit: https://github.com/sekulovskin/gitbook-template-/edit/master/%s
+    download: ["pdf"]
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: pdflatex
+  citation_package: natbib
+  keep_tex: yes
