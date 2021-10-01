@@ -1,6 +1,7 @@
 book_filename: "Informative Hypotheses"
 rmd_files: ["index.Rmd",
             "Chapter_2.Rmd",
+            "Multilevel_models.Rmd",
             "Literature.Rmd",
             "Appendix.Rmd"]
 output_dir: "docs"

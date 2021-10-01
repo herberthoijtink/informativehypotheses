@@ -4,8 +4,8 @@
 %
 \documentclass[
 ]{book}
+\usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
@@ -81,7 +81,8 @@
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\usepackage{longtable,booktabs}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
 \makeatletter
@@ -90,7 +91,7 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
-\usepackage{graphicx,grffile}
+\usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -129,12 +130,35 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+  % set entry spacing
+  \ifnum #2 > 0
+  \setlength{\parskip}{#2\baselineskip}
+  \fi
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \title{Informative Hypotheses}
 \author{Herbert Hoijtink, Nikola Sekulovski}
-\date{2021-09-30}
+\date{2021-10-01}
 
 \begin{document}
 \maketitle
@@ -153,11 +177,11 @@ This is a template GitBook based on \href{https://cjvanlissa.github.io/gitbook-d
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(tidyverse)}
-\CommentTok{# \{-\} no chapter number}
-\CommentTok{# see Appendix.Rmd how to make parts in a book}
-\CommentTok{# don't forget library(bookdown)}
-\CommentTok{# R - help -cheatsheets}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\CommentTok{\# \{{-}\} no chapter number}
+\CommentTok{\# see Appendix.Rmd how to make parts in a book}
+\CommentTok{\# don\textquotesingle{}t forget library(bookdown)}
+\CommentTok{\# R {-} help {-}cheatsheets}
 \end{Highlighting}
 \end{Shaded}
 
@@ -172,7 +196,7 @@ We set a seed to make our results reproducible:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{set.seed}\NormalTok{(}\DecValTok{6465}\NormalTok{)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{6465}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -184,7 +208,7 @@ We set a seed to make our results reproducible:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{samples <-plyr}\OperatorTok{::}\KeywordTok{rlply}\NormalTok{(}\DecValTok{100}\NormalTok{, }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{800}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\NormalTok{samples }\OtherTok{\textless{}{-}}\NormalTok{plyr}\SpecialCharTok{::}\FunctionTok{rlply}\NormalTok{(}\DecValTok{100}\NormalTok{, }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{800}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -198,19 +222,19 @@ We can construct a function that does this:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{samp_function <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+\NormalTok{samp\_function }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
  
-\NormalTok{  m <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(x)}
-\NormalTok{  n <-}\StringTok{ }\KeywordTok{length}\NormalTok{(x)}
-\NormalTok{  se <-}\StringTok{ }\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(n)}
-\NormalTok{  bias <-}\StringTok{ }\KeywordTok{abs}\NormalTok{(}\OperatorTok{-}\DecValTok{0} \OperatorTok{-}\StringTok{ }\NormalTok{m)}
-\NormalTok{  df <-}\StringTok{ }\NormalTok{n }\OperatorTok{-}\StringTok{ }\DecValTok{1}
-\NormalTok{  interval <-}\StringTok{ }\KeywordTok{qt}\NormalTok{(.}\DecValTok{975}\NormalTok{, df) }\OperatorTok{*}\StringTok{ }\NormalTok{se}
-  \KeywordTok{return}\NormalTok{(}\KeywordTok{c}\NormalTok{(m, bias, se, m }\OperatorTok{-}\StringTok{ }\NormalTok{interval, m }\OperatorTok{+}\StringTok{ }\NormalTok{interval))}
+\NormalTok{  m }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(x)}
+\NormalTok{  n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(x)}
+\NormalTok{  se }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(n)}
+\NormalTok{  bias }\OtherTok{\textless{}{-}} \FunctionTok{abs}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{0} \SpecialCharTok{{-}}\NormalTok{ m)}
+\NormalTok{  df }\OtherTok{\textless{}{-}}\NormalTok{ n }\SpecialCharTok{{-}} \DecValTok{1}
+\NormalTok{  interval }\OtherTok{\textless{}{-}} \FunctionTok{qt}\NormalTok{(.}\DecValTok{975}\NormalTok{, df) }\SpecialCharTok{*}\NormalTok{ se}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{c}\NormalTok{(m, bias, se, m }\SpecialCharTok{{-}}\NormalTok{ interval, m }\SpecialCharTok{+}\NormalTok{ interval))}
 
 \NormalTok{\}}
 
-\NormalTok{format <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Mean"}\NormalTok{ =}\StringTok{ }\DecValTok{0}\NormalTok{, }\StringTok{"Bias"}\NormalTok{ =}\StringTok{ }\DecValTok{0}\NormalTok{, }\StringTok{"Std.Err"}\NormalTok{ =}\StringTok{ }\DecValTok{0}\NormalTok{, }\StringTok{"Lower"}\NormalTok{ =}\StringTok{ }\DecValTok{0}\NormalTok{, }\StringTok{"Upper"}\NormalTok{ =}\StringTok{ }\DecValTok{0}\NormalTok{)}
+\NormalTok{format }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Mean"} \OtherTok{=} \DecValTok{0}\NormalTok{, }\StringTok{"Bias"} \OtherTok{=} \DecValTok{0}\NormalTok{, }\StringTok{"Std.Err"} \OtherTok{=} \DecValTok{0}\NormalTok{, }\StringTok{"Lower"} \OtherTok{=} \DecValTok{0}\NormalTok{, }\StringTok{"Upper"} \OtherTok{=} \DecValTok{0}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -218,11 +242,11 @@ Now we use the constructed function \texttt{samp\_function} on all 100 samples c
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{results <-}\StringTok{ }\NormalTok{samples }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{vapply}\NormalTok{(., samp_function, format) }\OperatorTok{%>%}
-\StringTok{  }\NormalTok{t }\OperatorTok{%>%}
-\StringTok{  }\NormalTok{as_tibble }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Covered =} \KeywordTok{ifelse}\NormalTok{(Lower }\OperatorTok{<}\StringTok{ }\DecValTok{0} \OperatorTok{&}\StringTok{ }\NormalTok{Upper }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\NormalTok{results }\OtherTok{\textless{}{-}}\NormalTok{ samples }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{vapply}\NormalTok{(., samp\_function, format) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  t }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  as\_tibble }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Covered =} \FunctionTok{ifelse}\NormalTok{(Lower }\SpecialCharTok{\textless{}} \DecValTok{0} \SpecialCharTok{\&}\NormalTok{ Upper }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -230,10 +254,10 @@ We can also add a table with the sample statistics of the samples whose CI's do 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# the results contains the table content that is piped into the table}
-\NormalTok{results }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(Covered }\OperatorTok{==}\DecValTok{0}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\NormalTok{kableExtra}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\DataTypeTok{caption =} \StringTok{"Here is a table of the samples"}\NormalTok{ )}
+\CommentTok{\# the results contains the table content that is piped into the table}
+\NormalTok{results }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(Covered }\SpecialCharTok{==}\DecValTok{0}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  kableExtra}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}\AttributeTok{caption =} \StringTok{"Here is a table of the samples"}\NormalTok{ )}
 \end{Highlighting}
 \end{Shaded}
 
@@ -256,13 +280,13 @@ And finally we can also make a nice plot illustrating everything that we did so 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# in the line above also the size of the figure can be adjusted}
-\NormalTok{lims <-}\StringTok{ }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymax =}\NormalTok{ results}\OperatorTok{$}\NormalTok{Upper, }\DataTypeTok{ymin =}\NormalTok{ results}\OperatorTok{$}\NormalTok{Lower)}
-\KeywordTok{ggplot}\NormalTok{(results, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y=}\NormalTok{Mean, }\DataTypeTok{x=}\DecValTok{1}\OperatorTok{:}\DecValTok{100}\NormalTok{, }\DataTypeTok{colour =}\NormalTok{ Covered)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_hline}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{yintercept =} \DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_pointrange}\NormalTok{(lims) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Simulations"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Means and 95% Confidence Intervals"}\NormalTok{)}
+\CommentTok{\# in the line above also the size of the figure can be adjusted}
+\NormalTok{lims }\OtherTok{\textless{}{-}} \FunctionTok{aes}\NormalTok{(}\AttributeTok{ymax =}\NormalTok{ results}\SpecialCharTok{$}\NormalTok{Upper, }\AttributeTok{ymin =}\NormalTok{ results}\SpecialCharTok{$}\NormalTok{Lower)}
+\FunctionTok{ggplot}\NormalTok{(results, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{Mean, }\AttributeTok{x=}\DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{, }\AttributeTok{colour =}\NormalTok{ Covered)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_hline}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{yintercept =} \DecValTok{0}\NormalTok{)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_pointrange}\NormalTok{(lims) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{"Simulations"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ylab}\NormalTok{(}\StringTok{"Means and 95\% Confidence Intervals"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -288,10 +312,10 @@ Now we calculate the mean for each sample:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{means <-}\StringTok{ }\NormalTok{samples_}\DecValTok{2} \OperatorTok{%>%}
-\StringTok{  }\KeywordTok{lapply}\NormalTok{(., mean) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{as.data.frame}\NormalTok{() }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{t}\NormalTok{()}
+\NormalTok{means }\OtherTok{\textless{}{-}}\NormalTok{ samples\_2 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{lapply}\NormalTok{(., mean) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{as.data.frame}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{t}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -299,7 +323,7 @@ And now we plot a histogram of the resulting means:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{hist}\NormalTok{(}\KeywordTok{t}\NormalTok{(means))}
+\FunctionTok{hist}\NormalTok{(}\FunctionTok{t}\NormalTok{(means))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -309,9 +333,21 @@ And now we plot a histogram of the resulting means:
 \caption{\label{fig:unnamed-chunk-10}Histogram of the sampling distribution of the mean}
 \end{figure}
 
+\hypertarget{informative-hypothesis-bayesian-testing-for-multi-level-models}{%
+\chapter{Informative hypothesis (Bayesian) testing for multi-level models}\label{informative-hypothesis-bayesian-testing-for-multi-level-models}}
+
+\hypertarget{example-for-citation}{%
+\section{Example for citation}\label{example-for-citation}}
+
+We will be using the \emph{Approximate Adjusted Fractional Bayes factor} proposed by \citet{gu2018approximated}, which is implemented in the R package \texttt{bain} \citep{bain}.
+
 \hypertarget{literature}{%
 \chapter*{Literature}\label{literature}}
 \addcontentsline{toc}{chapter}{Literature}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{0}{0}
+\end{CSLReferences}
 
 \hypertarget{appendix-appendix}{%
 \appendix}
