@@ -1,14 +1,19 @@
 bookdown::gitbook:
   css: style.css
+  pandoc_args: [ "--csl", "apa-no-doi-no-issue.csl" ]
+  split_bib: no
   config:
     toc:
       before: |
-       <li><a href="./">A GitBook template</a></li>
-    edit: https://github.com/herberthoijtink/informativehypotheses/edit/master/%s
-    download: ["pdf"]
+        <li><a href="./">Informative hypotheses</a></li>
+    download: ["pdf", "epub"]
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
-  latex_engine: pdflatex
-  citation_package: natbib
+  latex_engine: xelatex
+  citation_package: none
+  pandoc_args: [ "--csl", "apa-no-doi-no-issue.csl" ]
   keep_tex: yes
+bookdown::epub_book:
+  pandoc_args: [ "--csl", "apa-no-doi-no-issue.csl" ]
+
