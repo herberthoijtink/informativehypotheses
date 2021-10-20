@@ -133,8 +133,6 @@
 \ifluatex
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\usepackage[]{natbib}
-\bibliographystyle{apalike}
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
 \newlength{\csllabelwidth}
@@ -158,7 +156,7 @@
 
 \title{Informative Hypotheses}
 \author{Herbert Hoijtink, Nikola Sekulovski}
-\date{2021-10-01}
+\date{2021-10-20}
 
 \begin{document}
 \maketitle
@@ -339,14 +337,25 @@ And now we plot a histogram of the resulting means:
 \hypertarget{example-for-citation}{%
 \section{Example for citation}\label{example-for-citation}}
 
-We will be using the \emph{Approximate Adjusted Fractional Bayes factor} proposed by \citet{gu2018approximated}, which is implemented in the R package \texttt{bain} \citep{bain}.
+We will be using the \emph{Approximate Adjusted Fractional Bayes factor} proposed by \protect\hyperlink{ref-gu2018approximated}{Gu, Mulder, \& Hoijtink} (\protect\hyperlink{ref-gu2018approximated}{2018}), which is implemented in the R package \texttt{bain} (\protect\hyperlink{ref-bain}{Gu, Hoijtink, Mulder, \& van Lissa, 2021}).
+
+We can reference like this \protect\hyperlink{ref-hoijtink2008bayesian}{Hoijtink, Klugkist, \& Boelen} (\protect\hyperlink{ref-hoijtink2008bayesian}{2008}) or like this (\protect\hyperlink{ref-hoijtink2008bayesian}{Hoijtink, Klugkist, \& Boelen, 2008})
 
 \hypertarget{literature}{%
 \chapter*{Literature}\label{literature}}
 \addcontentsline{toc}{chapter}{Literature}
 
 \hypertarget{refs}{}
-\begin{CSLReferences}{0}{0}
+\begin{CSLReferences}{1}{0}
+\leavevmode\hypertarget{ref-bain}{}%
+Gu, X., Hoijtink, H., Mulder, J., \& van Lissa, C. J. (2021). \emph{Bain: Bayes factors for informative hypotheses}. Retrieved from \url{https://CRAN.R-project.org/package=bain}
+
+\leavevmode\hypertarget{ref-gu2018approximated}{}%
+Gu, X., Mulder, J., \& Hoijtink, H. (2018). Approximated adjusted fractional bayes factors: A general method for testing informative hypotheses. \emph{British Journal of Mathematical and Statistical Psychology}, \emph{71}, 229--261.
+
+\leavevmode\hypertarget{ref-hoijtink2008bayesian}{}%
+Hoijtink, H., Klugkist, I., \& Boelen, P. A. (2008). \emph{Bayesian evaluation of informative hypotheses}. Springer.
+
 \end{CSLReferences}
 
 \hypertarget{appendix-appendix}{%
@@ -356,7 +365,5 @@ We will be using the \emph{Approximate Adjusted Fractional Bayes factor} propose
 \hypertarget{appendix-a}{%
 \chapter*{Appendix A}\label{appendix-a}}
 \addcontentsline{toc}{chapter}{Appendix A}
-
-  \bibliography{book.bib,packages.bib}
 
 \end{document}

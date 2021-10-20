@@ -4,12 +4,10 @@ author: "Herbert Hoijtink, Nikola Sekulovski"
 date: "`r Sys.Date()`"
 documentclass: book
 github-repo: herberthoijtink/informativehypotheses
-link-citations: yes
-bibliography:
-- book.bib
-- packages.bib
 site: bookdown::bookdown_site
-biblio-style: apalike
+bibliography: ["ref.bib", "packages.bib"]
+csl: apa-no-doi-no-issue.csl
+link-citations: TRUE
 ---
 
 # Introduction
