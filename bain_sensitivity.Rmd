@@ -1,0 +1,42 @@
+# Sensitivity analysis using `bain`
+Load `bain`:
+```{r}
+library(bain)
+```
+
+Please see @hoijtink2019tutorial for further elaborations.
+
+Note that, most the code below can be replaced by a call to the function `bain_sensitivity`. See the help file for this function for further instructions (call `?bain_sensitivity`).
+
+## The `t-test` example from 3.1.1
+
+```{r include=FALSE}
+x<-sesamesim$postnumb[which(sesamesim$sex==1)]
+y<-sesamesim$postnumb[which(sesamesim$sex==2)]
+ttest <- t_test(x,y,paired = FALSE, var.equal = TRUE)
+```
+
+First, we test the same hypotheses as in 3.1.1 using the minimal fraction (*J=1*) which is by default implemented in `bain`.
+```{r}
+# set a seed value
+set.seed(100)
+# test hypotheses with bain. The names of the means are x and y.
+results <- bain(ttest, "x = y; x > y; x < y", fraction = 1)
+```
+
+```{r}
+print(results)
+```
+
+Now we execute the sensitivity analysis by interactively changing the `fraction` argument to be equal to 2 and 3, respectively:
+
+```{r}
+results2 <- bain(ttest, "x = y; x > y; x < y", fraction = 2)
+results3 <- bain(ttest, "x = y; x > y; x < y", fraction = 3)
+```
+
+```{r}
+print(results2)
+print(results3)
+```
+As it is clear by looking at the results, the $BF_{0u}$ changes from 11.58 when `fraction` = 1 to 8.19 and 6.68, when `fraction` = 2 and 3, respectively. This stems from the fact that the value of the **complexity** (which is the proportion of the prior distribution that is supported by the (*null*) hypothesis at hand) changes, thus changing the resulting BF's.

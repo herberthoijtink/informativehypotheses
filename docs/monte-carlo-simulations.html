@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Monte Carlo Simulations | Informative Hypotheses</title>
   <meta name="description" content="Chapter 2 Monte Carlo Simulations | Informative Hypotheses" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Monte Carlo Simulations | Informative Hypotheses" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Herbert Hoijtink, Nikola Sekulovski" />
 
 
-<meta name="date" content="2021-10-21" />
+<meta name="date" content="2021-11-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="informative-hypothesis-bayesian-testing-for-multi-level-models.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,24 +51,23 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -120,6 +120,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -138,12 +160,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="monte-carlo-simulations.html"><a href="monte-carlo-simulations.html"><i class="fa fa-check"></i><b>2</b> Monte Carlo Simulations</a><ul>
+<li class="chapter" data-level="2" data-path="monte-carlo-simulations.html"><a href="monte-carlo-simulations.html"><i class="fa fa-check"></i><b>2</b> Monte Carlo Simulations</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="monte-carlo-simulations.html"><a href="monte-carlo-simulations.html#the-confidence-interval"><i class="fa fa-check"></i><b>2.1</b> The Confidence Interval</a></li>
 <li class="chapter" data-level="2.2" data-path="monte-carlo-simulations.html"><a href="monte-carlo-simulations.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>2.2</b> The Central Limit Theorem</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="informative-hypothesis-bayesian-testing-for-multi-level-models.html"><a href="informative-hypothesis-bayesian-testing-for-multi-level-models.html"><i class="fa fa-check"></i><b>3</b> Informative hypothesis (Bayesian) testing for multi-level models</a><ul>
+<li class="chapter" data-level="3" data-path="informative-hypothesis-bayesian-testing-for-multi-level-models.html"><a href="informative-hypothesis-bayesian-testing-for-multi-level-models.html"><i class="fa fa-check"></i><b>3</b> Informative hypothesis (Bayesian) testing for multi-level models</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="informative-hypothesis-bayesian-testing-for-multi-level-models.html"><a href="informative-hypothesis-bayesian-testing-for-multi-level-models.html#example-for-citation"><i class="fa fa-check"></i><b>3.1</b> Example for citation</a></li>
+</ul></li>
+<li class="part"><span><b>I <code>R</code> package <code>bain</code></b></span></li>
+<li class="chapter" data-level="4" data-path="introduction-to-bain.html"><a href="introduction-to-bain.html"><i class="fa fa-check"></i><b>4</b> Introduction to <code>bain</code></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="introduction-to-bain.html"><a href="introduction-to-bain.html#available-tutorials"><i class="fa fa-check"></i><b>4.1</b> Available tutorials</a></li>
+<li class="chapter" data-level="4.2" data-path="introduction-to-bain.html"><a href="introduction-to-bain.html#usage"><i class="fa fa-check"></i><b>4.2</b> Usage</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="introduction-to-bain.html"><a href="introduction-to-bain.html#arguments"><i class="fa fa-check"></i><b>4.2.1</b> Arguments</a></li>
+<li class="chapter" data-level="4.2.2" data-path="introduction-to-bain.html"><a href="introduction-to-bain.html#the-specification-of-hypotheses"><i class="fa fa-check"></i><b>4.2.2</b> The specification of <code>hypotheses</code></a></li>
+<li class="chapter" data-level="4.2.3" data-path="introduction-to-bain.html"><a href="introduction-to-bain.html#output"><i class="fa fa-check"></i><b>4.2.3</b> Output</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html"><i class="fa fa-check"></i><b>5</b> Hands-on examples using <code>bain</code></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#using-bain-with-a-t_test-object"><i class="fa fa-check"></i><b>5.1</b> Using <code>bain</code> with a <code>t_test</code> object</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#students-t-test-equal-within-group-variances"><i class="fa fa-check"></i><b>5.1.1</b> Student’s t-test (equal within group variances):</a></li>
+<li class="chapter" data-level="5.1.2" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#welchs-t-test-unequal-within-group-variances"><i class="fa fa-check"></i><b>5.1.2</b> Welch’s t-test (unequal within group variances):</a></li>
+<li class="chapter" data-level="5.1.3" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#paired-samples-t-test"><i class="fa fa-check"></i><b>5.1.3</b> Paired samples t-test:</a></li>
+<li class="chapter" data-level="5.1.4" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#one-group-t-test"><i class="fa fa-check"></i><b>5.1.4</b> One group t-test</a></li>
+<li class="chapter" data-level="5.1.5" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#equivalence-test"><i class="fa fa-check"></i><b>5.1.5</b> Equivalence test</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#using-bain-with-a-lm-object"><i class="fa fa-check"></i><b>5.2</b> Using <code>bain</code> with a <code>lm</code> object</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#anova"><i class="fa fa-check"></i><b>5.2.1</b> ANOVA</a></li>
+<li class="chapter" data-level="5.2.2" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#ancova"><i class="fa fa-check"></i><b>5.2.2</b> ANCOVA</a></li>
+<li class="chapter" data-level="5.2.3" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#multiple-regression"><i class="fa fa-check"></i><b>5.2.3</b> Multiple regression</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#lavaan"><i class="fa fa-check"></i><b>5.3</b> Using <code>bain</code> with a <code>lavaan</code> object</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#confirmatory-factor-analysis-cfa"><i class="fa fa-check"></i><b>5.3.1</b> Confirmatory Factor Analysis (CFA):</a></li>
+<li class="chapter" data-level="5.3.2" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#latent-regression"><i class="fa fa-check"></i><b>5.3.2</b> Latent regression</a></li>
+<li class="chapter" data-level="5.3.3" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#multiple-group-regression"><i class="fa fa-check"></i><b>5.3.3</b> Multiple group regression</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#named"><i class="fa fa-check"></i><b>5.4</b> Using <code>bain</code> with a named vector</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#anova-1"><i class="fa fa-check"></i><b>5.4.1</b> ANOVA</a></li>
+<li class="chapter" data-level="5.4.2" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#welchs-anova-equal-variances-not-assumed"><i class="fa fa-check"></i><b>5.4.2</b> Welch’s ANOVA (equal variances not assumed)</a></li>
+<li class="chapter" data-level="5.4.3" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#robust-anova-against-non-normality"><i class="fa fa-check"></i><b>5.4.3</b> Robust ANOVA (against non-normality)</a></li>
+<li class="chapter" data-level="5.4.4" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#ancova-1"><i class="fa fa-check"></i><b>5.4.4</b> ANCOVA</a></li>
+<li class="chapter" data-level="5.4.5" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#one-within-factor-repeated-measures-analysis"><i class="fa fa-check"></i><b>5.4.5</b> One within factor repeated measures analysis</a></li>
+<li class="chapter" data-level="5.4.6" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#one-between-within-factor-repeated-measures-analysis"><i class="fa fa-check"></i><b>5.4.6</b> One between-within factor repeated measures analysis</a></li>
+<li class="chapter" data-level="5.4.7" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#logistic-regression-1"><i class="fa fa-check"></i><b>5.4.7</b> Logistic regression (1)</a></li>
+<li class="chapter" data-level="5.4.8" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#logistic-regression-2"><i class="fa fa-check"></i><b>5.4.8</b> Logistic regression (2)</a></li>
+<li class="chapter" data-level="5.4.9" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#cfa"><i class="fa fa-check"></i><b>5.4.9</b> CFA</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="hands-on-examples-using-bain.html"><a href="hands-on-examples-using-bain.html#using-bain-with-missing-data"><i class="fa fa-check"></i><b>5.5</b> Using <code>bain</code> with missing data:</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="sensitivity-analysis-using-bain.html"><a href="sensitivity-analysis-using-bain.html"><i class="fa fa-check"></i><b>6</b> Sensitivity analysis using <code>bain</code></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="sensitivity-analysis-using-bain.html"><a href="sensitivity-analysis-using-bain.html#the-t-test-example-from-3.1.1"><i class="fa fa-check"></i><b>6.1</b> The <code>t-test</code> example from 3.1.1</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i>Literature</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -165,51 +240,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="monte-carlo-simulations" class="section level1">
+<div id="monte-carlo-simulations" class="section level1" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Monte Carlo Simulations</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="monte-carlo-simulations.html#cb1-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="monte-carlo-simulations.html#cb1-2"></a><span class="co"># {-} no chapter number</span></span>
-<span id="cb1-3"><a href="monte-carlo-simulations.html#cb1-3"></a><span class="co"># see Appendix.Rmd how to make parts in a book</span></span>
-<span id="cb1-4"><a href="monte-carlo-simulations.html#cb1-4"></a><span class="co"># don&#39;t forget library(bookdown)</span></span>
-<span id="cb1-5"><a href="monte-carlo-simulations.html#cb1-5"></a><span class="co"># R - help -cheatsheets</span></span></code></pre></div>
-<div id="the-confidence-interval" class="section level2">
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="monte-carlo-simulations.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="monte-carlo-simulations.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># {-} no chapter number</span></span>
+<span id="cb1-3"><a href="monte-carlo-simulations.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># see Appendix.Rmd how to make parts in a book</span></span>
+<span id="cb1-4"><a href="monte-carlo-simulations.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># don&#39;t forget library(bookdown)</span></span>
+<span id="cb1-5"><a href="monte-carlo-simulations.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># R - help -cheatsheets</span></span></code></pre></div>
+<div id="the-confidence-interval" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> The Confidence Interval</h2>
 <p>In this exercise I will try to repeat the example given by <a href="https://www.gerkovink.com/markup/Wk1/Solution_to_Ex1.html">Gerko Vink</a></p>
 <p>The main idea of this exercise is to illustrate the nature of the <em>Confidence Interval</em> as described by <a href="http://www.stat.cmu.edu/~brian/905-2008/papers/neyman-1934-jrss.pdf">Neyman (1934)</a></p>
 <p>We set a seed to make our results reproducible:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="monte-carlo-simulations.html#cb2-1"></a><span class="kw">set.seed</span>(<span class="dv">6465</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="monte-carlo-simulations.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">6465</span>)</span></code></pre></div>
 <ul>
 <li>The first step is to take 100 samples (in this case of size 800) from a <em>normal distributuon</em> with <span class="math inline">\(\mu = 0\)</span> and <span class="math inline">\(\sigma = 1\)</span>:</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="monte-carlo-simulations.html#cb3-1"></a>samples &lt;-plyr<span class="op">::</span><span class="kw">rlply</span>(<span class="dv">100</span>, <span class="kw">rnorm</span>(<span class="dv">800</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="monte-carlo-simulations.html#cb3-1" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">&lt;-</span>plyr<span class="sc">::</span><span class="fu">rlply</span>(<span class="dv">100</span>, <span class="fu">rnorm</span>(<span class="dv">800</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span></code></pre></div>
 <ul>
 <li>Secondly, we need to calculate for the mean of each sample: the absolute bias; standard error lower bound of the 95% confidence interval and upper bound of the 95% confidence interval.</li>
 </ul>
 <p>We can construct a function that does this:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="monte-carlo-simulations.html#cb4-1"></a>samp_function &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb4-2"><a href="monte-carlo-simulations.html#cb4-2"></a> </span>
-<span id="cb4-3"><a href="monte-carlo-simulations.html#cb4-3"></a>  m &lt;-<span class="st"> </span><span class="kw">mean</span>(x)</span>
-<span id="cb4-4"><a href="monte-carlo-simulations.html#cb4-4"></a>  n &lt;-<span class="st"> </span><span class="kw">length</span>(x)</span>
-<span id="cb4-5"><a href="monte-carlo-simulations.html#cb4-5"></a>  se &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="kw">sqrt</span>(n)</span>
-<span id="cb4-6"><a href="monte-carlo-simulations.html#cb4-6"></a>  bias &lt;-<span class="st"> </span><span class="kw">abs</span>(<span class="op">-</span><span class="dv">0</span> <span class="op">-</span><span class="st"> </span>m)</span>
-<span id="cb4-7"><a href="monte-carlo-simulations.html#cb4-7"></a>  df &lt;-<span class="st"> </span>n <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb4-8"><a href="monte-carlo-simulations.html#cb4-8"></a>  interval &lt;-<span class="st"> </span><span class="kw">qt</span>(.<span class="dv">975</span>, df) <span class="op">*</span><span class="st"> </span>se</span>
-<span id="cb4-9"><a href="monte-carlo-simulations.html#cb4-9"></a>  <span class="kw">return</span>(<span class="kw">c</span>(m, bias, se, m <span class="op">-</span><span class="st"> </span>interval, m <span class="op">+</span><span class="st"> </span>interval))</span>
-<span id="cb4-10"><a href="monte-carlo-simulations.html#cb4-10"></a></span>
-<span id="cb4-11"><a href="monte-carlo-simulations.html#cb4-11"></a>}</span>
-<span id="cb4-12"><a href="monte-carlo-simulations.html#cb4-12"></a></span>
-<span id="cb4-13"><a href="monte-carlo-simulations.html#cb4-13"></a>format &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Mean&quot;</span> =<span class="st"> </span><span class="dv">0</span>, <span class="st">&quot;Bias&quot;</span> =<span class="st"> </span><span class="dv">0</span>, <span class="st">&quot;Std.Err&quot;</span> =<span class="st"> </span><span class="dv">0</span>, <span class="st">&quot;Lower&quot;</span> =<span class="st"> </span><span class="dv">0</span>, <span class="st">&quot;Upper&quot;</span> =<span class="st"> </span><span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="monte-carlo-simulations.html#cb4-1" aria-hidden="true" tabindex="-1"></a>samp_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb4-2"><a href="monte-carlo-simulations.html#cb4-2" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb4-3"><a href="monte-carlo-simulations.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb4-4"><a href="monte-carlo-simulations.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb4-5"><a href="monte-carlo-simulations.html#cb4-5" aria-hidden="true" tabindex="-1"></a>  se <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
+<span id="cb4-6"><a href="monte-carlo-simulations.html#cb4-6" aria-hidden="true" tabindex="-1"></a>  bias <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="sc">-</span><span class="dv">0</span> <span class="sc">-</span> m)</span>
+<span id="cb4-7"><a href="monte-carlo-simulations.html#cb4-7" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> n <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb4-8"><a href="monte-carlo-simulations.html#cb4-8" aria-hidden="true" tabindex="-1"></a>  interval <span class="ot">&lt;-</span> <span class="fu">qt</span>(.<span class="dv">975</span>, df) <span class="sc">*</span> se</span>
+<span id="cb4-9"><a href="monte-carlo-simulations.html#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(m, bias, se, m <span class="sc">-</span> interval, m <span class="sc">+</span> interval))</span>
+<span id="cb4-10"><a href="monte-carlo-simulations.html#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="monte-carlo-simulations.html#cb4-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-12"><a href="monte-carlo-simulations.html#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="monte-carlo-simulations.html#cb4-13" aria-hidden="true" tabindex="-1"></a>format <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Mean&quot;</span> <span class="ot">=</span> <span class="dv">0</span>, <span class="st">&quot;Bias&quot;</span> <span class="ot">=</span> <span class="dv">0</span>, <span class="st">&quot;Std.Err&quot;</span> <span class="ot">=</span> <span class="dv">0</span>, <span class="st">&quot;Lower&quot;</span> <span class="ot">=</span> <span class="dv">0</span>, <span class="st">&quot;Upper&quot;</span> <span class="ot">=</span> <span class="dv">0</span>)</span></code></pre></div>
 <p>Now we use the constructed function <code>samp_function</code> on all 100 samples contained in the object <code>samples</code>. And we also add a new column to the results that indicates which CI of the respective samples does contain <span class="math inline">\(\mu\)</span>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="monte-carlo-simulations.html#cb5-1"></a>results &lt;-<span class="st"> </span>samples <span class="op">%&gt;%</span></span>
-<span id="cb5-2"><a href="monte-carlo-simulations.html#cb5-2"></a><span class="st">  </span><span class="kw">vapply</span>(., samp_function, format) <span class="op">%&gt;%</span></span>
-<span id="cb5-3"><a href="monte-carlo-simulations.html#cb5-3"></a><span class="st">  </span>t <span class="op">%&gt;%</span></span>
-<span id="cb5-4"><a href="monte-carlo-simulations.html#cb5-4"></a><span class="st">  </span>as_tibble <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb5-5"><a href="monte-carlo-simulations.html#cb5-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Covered =</span> <span class="kw">ifelse</span>(Lower <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>Upper <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="monte-carlo-simulations.html#cb5-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> samples <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="monte-carlo-simulations.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vapply</span>(., samp_function, format) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="monte-carlo-simulations.html#cb5-3" aria-hidden="true" tabindex="-1"></a>  t <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="monte-carlo-simulations.html#cb5-4" aria-hidden="true" tabindex="-1"></a>  as_tibble <span class="sc">%&gt;%</span> </span>
+<span id="cb5-5"><a href="monte-carlo-simulations.html#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Covered =</span> <span class="fu">ifelse</span>(Lower <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> Upper <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code></pre></div>
 <p>We can also add a table with the sample statistics of the samples whose CI’s do not contain <span class="math inline">\(\mu\)</span>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="monte-carlo-simulations.html#cb6-1"></a><span class="co"># the results contains the table content that is piped into the table</span></span>
-<span id="cb6-2"><a href="monte-carlo-simulations.html#cb6-2"></a>results <span class="op">%&gt;%</span></span>
-<span id="cb6-3"><a href="monte-carlo-simulations.html#cb6-3"></a><span class="st">  </span><span class="kw">filter</span>(Covered <span class="op">==</span><span class="dv">0</span>) <span class="op">%&gt;%</span></span>
-<span id="cb6-4"><a href="monte-carlo-simulations.html#cb6-4"></a><span class="st">  </span>kableExtra<span class="op">::</span><span class="kw">kable</span>(<span class="dt">caption =</span> <span class="st">&quot;Here is a table of the samples&quot;</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="monte-carlo-simulations.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the results contains the table content that is piped into the table</span></span>
+<span id="cb6-2"><a href="monte-carlo-simulations.html#cb6-2" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="monte-carlo-simulations.html#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Covered <span class="sc">==</span><span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="monte-carlo-simulations.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;Here is a table of the samples&quot;</span> )</span></code></pre></div>
 <table>
 <caption>
 <span id="tab:unnamed-chunk-6">Table 2.1: </span>Here is a table of the samples
@@ -280,36 +355,36 @@ Covered
 </tbody>
 </table>
 <p>And finally we can also make a nice plot illustrating everything that we did so far.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="monte-carlo-simulations.html#cb7-1"></a><span class="co"># in the line above also the size of the figure can be adjusted</span></span>
-<span id="cb7-2"><a href="monte-carlo-simulations.html#cb7-2"></a>lims &lt;-<span class="st"> </span><span class="kw">aes</span>(<span class="dt">ymax =</span> results<span class="op">$</span>Upper, <span class="dt">ymin =</span> results<span class="op">$</span>Lower)</span>
-<span id="cb7-3"><a href="monte-carlo-simulations.html#cb7-3"></a><span class="kw">ggplot</span>(results, <span class="kw">aes</span>(<span class="dt">y=</span>Mean, <span class="dt">x=</span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dt">colour =</span> Covered)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb7-4"><a href="monte-carlo-simulations.html#cb7-4"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb7-5"><a href="monte-carlo-simulations.html#cb7-5"></a><span class="st">  </span><span class="kw">geom_pointrange</span>(lims) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb7-6"><a href="monte-carlo-simulations.html#cb7-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Simulations&quot;</span>) <span class="op">+</span></span>
-<span id="cb7-7"><a href="monte-carlo-simulations.html#cb7-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Means and 95% Confidence Intervals&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="monte-carlo-simulations.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in the line above also the size of the figure can be adjusted</span></span>
+<span id="cb7-2"><a href="monte-carlo-simulations.html#cb7-2" aria-hidden="true" tabindex="-1"></a>lims <span class="ot">&lt;-</span> <span class="fu">aes</span>(<span class="at">ymax =</span> results<span class="sc">$</span>Upper, <span class="at">ymin =</span> results<span class="sc">$</span>Lower)</span>
+<span id="cb7-3"><a href="monte-carlo-simulations.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(results, <span class="fu">aes</span>(<span class="at">y=</span>Mean, <span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">colour =</span> Covered)) <span class="sc">+</span> </span>
+<span id="cb7-4"><a href="monte-carlo-simulations.html#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> <span class="dv">0</span>)) <span class="sc">+</span> </span>
+<span id="cb7-5"><a href="monte-carlo-simulations.html#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(lims) <span class="sc">+</span> </span>
+<span id="cb7-6"><a href="monte-carlo-simulations.html#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Simulations&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="monte-carlo-simulations.html#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Means and 95% Confidence Intervals&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: Use of `results$Upper` is discouraged. Use `Upper` instead.</code></pre>
 <pre><code>## Warning: Use of `results$Lower` is discouraged. Use `Lower` instead.</code></pre>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
-<img src="Informative-Hypotheses_files/figure-html/unnamed-chunk-7-1.png" alt="Here is a plot of the CI's" width="672" />
+<img src="Chapter_2_files/figure-html/unnamed-chunk-7-1.png" alt="Here is a plot of the CI's" width="672" />
 <p class="caption">
 Figure 2.1: Here is a plot of the CI’s
 </p>
 </div>
 <p>In this case only two out of 100 CI’s do not include the true population mean.</p>
 </div>
-<div id="the-central-limit-theorem" class="section level2">
+<div id="the-central-limit-theorem" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> The Central Limit Theorem</h2>
 <p>Here we will also try to illustrate the <a href="https://en.wikipedia.org/wiki/Central_limit_theorem">Central Limit Theorem</a>, in it’s most basic form, with a very simple example.</p>
 <p>First we draw 1000 samples (again of size 800), form , say, a <em>Poisson</em> distribution, of course we could’ve drawn them from a uniform or an exponential as well.</p>
 <p>Now we calculate the mean for each sample:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="monte-carlo-simulations.html#cb10-1"></a>means &lt;-<span class="st"> </span>samples_<span class="dv">2</span> <span class="op">%&gt;%</span></span>
-<span id="cb10-2"><a href="monte-carlo-simulations.html#cb10-2"></a><span class="st">  </span><span class="kw">lapply</span>(., mean) <span class="op">%&gt;%</span></span>
-<span id="cb10-3"><a href="monte-carlo-simulations.html#cb10-3"></a><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></span>
-<span id="cb10-4"><a href="monte-carlo-simulations.html#cb10-4"></a><span class="st">  </span><span class="kw">t</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="monte-carlo-simulations.html#cb10-1" aria-hidden="true" tabindex="-1"></a>means <span class="ot">&lt;-</span> samples_2 <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="monte-carlo-simulations.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(., mean) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="monte-carlo-simulations.html#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="monte-carlo-simulations.html#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t</span>()</span></code></pre></div>
 <p>And now we plot a histogram of the resulting means:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="monte-carlo-simulations.html#cb11-1"></a><span class="kw">hist</span>(<span class="kw">t</span>(means))</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="monte-carlo-simulations.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">t</span>(means))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
-<img src="Informative-Hypotheses_files/figure-html/unnamed-chunk-10-1.png" alt="Histogram of the sampling distribution of the mean" width="672" />
+<img src="Chapter_2_files/figure-html/unnamed-chunk-10-1.png" alt="Histogram of the sampling distribution of the mean" width="672" />
 <p class="caption">
 Figure 2.2: Histogram of the sampling distribution of the mean
 </p>
