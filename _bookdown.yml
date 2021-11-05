@@ -2,6 +2,9 @@ book_filename: "Informative Hypotheses"
 rmd_files: ["index.Rmd",
             "Chapter_2.Rmd",
             "Multilevel_models.Rmd",
+            "bain_introduction.Rmd",
+            "bain_examples.Rmd",
+            "bain_sensitivity.Rmd",
             "Literature.Rmd",
             "Appendix.Rmd"]
 output_dir: "docs"
@@ -9,3 +12,4 @@ language:
   ui:
     chapter_name: "Chapter "
 delete_merged_file: true
+new_session: yes
