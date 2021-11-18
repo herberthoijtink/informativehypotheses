@@ -13,7 +13,7 @@ Note that, most the code below can be replaced by a call to the function `bain_s
 
 
 
-First, we test the same hypotheses as in 3.1.1 using the minimal fraction (*J=1*) which is by default implemented in `bain`.
+First we test the same hypotheses as in 3.1.1 using the default value  `fraction = 1` (i.e., $1*b$).
 
 ```r
 # set a seed value
@@ -44,7 +44,7 @@ print(results)
 ## Note: BF.u denotes the Bayes factor of the hypothesis at hand versus the unconstrained hypothesis Hu. BF.c denotes the Bayes factor of the hypothesis at hand versus its complement.
 ```
 
-Now we execute the sensitivity analysis by interactively changing the `fraction` argument to be equal to 2 and 3, respectively:
+Now we execute the sensitivity analysis by interactively changing the `fraction` argument to be equal to 2 and 3, respectively (i.e., $2*b$ and $3*b$):
 
 
 ```r
@@ -94,4 +94,4 @@ print(results3)
 ## 
 ## Note: BF.u denotes the Bayes factor of the hypothesis at hand versus the unconstrained hypothesis Hu. BF.c denotes the Bayes factor of the hypothesis at hand versus its complement.
 ```
-As it is clear by looking at the results, the $BF_{0u}$ changes from 11.58 when `fraction` = 1 to 8.19 and 6.68, when `fraction` = 2 and 3, respectively. This stems from the fact that the value of the **complexity** (which is the proportion of the prior distribution that is supported by the (*null*) hypothesis at hand) changes, thus changing the resulting BF's.
+The $BF_{0u}$ changes from 11.58 when `fraction` = 1 to 8.19 and 6.68, when `fraction` = 2 and 3, respectively. This stems from the fact that the value of the **complexity**, which is the proportion (density) of the prior distribution that is supported by the (*null*) hypothesis at hand changes, thus changing the values of resulting BF's.

@@ -24,7 +24,7 @@
 <meta name="author" content="Herbert Hoijtink, Nikola Sekulovski" />
 
 
-<meta name="date" content="2021-11-05" />
+<meta name="date" content="2021-11-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -248,7 +248,7 @@ div.csl-indent {
 <p>Note that, most the code below can be replaced by a call to the function <code>bain_sensitivity</code>. See the help file for this function for further instructions (call <code>?bain_sensitivity</code>).</p>
 <div id="the-t-test-example-from-3.1.1" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> The <code>t-test</code> example from 3.1.1</h2>
-<p>First, we test the same hypotheses as in 3.1.1 using the minimal fraction (<em>J=1</em>) which is by default implemented in <code>bain</code>.</p>
+<p>First we test the same hypotheses as in 3.1.1 using the default value <code>fraction = 1</code> (i.e., <span class="math inline">\(1*b\)</span>).</p>
 <div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="sensitivity-analysis-using-bain.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set a seed value</span></span>
 <span id="cb213-2"><a href="sensitivity-analysis-using-bain.html#cb213-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
 <span id="cb213-3"><a href="sensitivity-analysis-using-bain.html#cb213-3" aria-hidden="true" tabindex="-1"></a><span class="co"># test hypotheses with bain. The names of the means are x and y.</span></span>
@@ -268,7 +268,7 @@ div.csl-indent {
 ##   H3: x&lt;y
 ## 
 ## Note: BF.u denotes the Bayes factor of the hypothesis at hand versus the unconstrained hypothesis Hu. BF.c denotes the Bayes factor of the hypothesis at hand versus its complement.</code></pre>
-<p>Now we execute the sensitivity analysis by interactively changing the <code>fraction</code> argument to be equal to 2 and 3, respectively:</p>
+<p>Now we execute the sensitivity analysis by interactively changing the <code>fraction</code> argument to be equal to 2 and 3, respectively (i.e., <span class="math inline">\(2*b\)</span> and <span class="math inline">\(3*b\)</span>):</p>
 <div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="sensitivity-analysis-using-bain.html#cb216-1" aria-hidden="true" tabindex="-1"></a>results2 <span class="ot">&lt;-</span> <span class="fu">bain</span>(ttest, <span class="st">&quot;x = y; x &gt; y; x &lt; y&quot;</span>, <span class="at">fraction =</span> <span class="dv">2</span>)</span>
 <span id="cb216-2"><a href="sensitivity-analysis-using-bain.html#cb216-2" aria-hidden="true" tabindex="-1"></a>results3 <span class="ot">&lt;-</span> <span class="fu">bain</span>(ttest, <span class="st">&quot;x = y; x &gt; y; x &lt; y&quot;</span>, <span class="at">fraction =</span> <span class="dv">3</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="sensitivity-analysis-using-bain.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(results2)</span></code></pre></div>
@@ -301,7 +301,7 @@ div.csl-indent {
 ##   H3: x&lt;y
 ## 
 ## Note: BF.u denotes the Bayes factor of the hypothesis at hand versus the unconstrained hypothesis Hu. BF.c denotes the Bayes factor of the hypothesis at hand versus its complement.</code></pre>
-<p>As it is clear by looking at the results, the <span class="math inline">\(BF_{0u}\)</span> changes from 11.58 when <code>fraction</code> = 1 to 8.19 and 6.68, when <code>fraction</code> = 2 and 3, respectively. This stems from the fact that the value of the <strong>complexity</strong> (which is the proportion of the prior distribution that is supported by the (<em>null</em>) hypothesis at hand) changes, thus changing the resulting BF’s.</p>
+<p>The <span class="math inline">\(BF_{0u}\)</span> changes from 11.58 when <code>fraction</code> = 1 to 8.19 and 6.68, when <code>fraction</code> = 2 and 3, respectively. This stems from the fact that the value of the <strong>complexity</strong>, which is the proportion (density) of the prior distribution that is supported by the (<em>null</em>) hypothesis at hand changes, thus changing the values of resulting BF’s.</p>
 
 </div>
 </div>

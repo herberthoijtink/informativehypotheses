@@ -156,7 +156,7 @@
 
 \title{Informative Hypotheses}
 \author{Herbert Hoijtink, Nikola Sekulovski}
-\date{2021-11-05}
+\date{2021-11-18}
 
 \begin{document}
 \maketitle
@@ -3987,7 +3987,7 @@ Note that, most the code below can be replaced by a call to the function \texttt
 \hypertarget{the-t-test-example-from-3.1.1}{%
 \section{\texorpdfstring{The \texttt{t-test} example from 3.1.1}{The t-test example from 3.1.1}}\label{the-t-test-example-from-3.1.1}}
 
-First, we test the same hypotheses as in 3.1.1 using the minimal fraction (\emph{J=1}) which is by default implemented in \texttt{bain}.
+First we test the same hypotheses as in 3.1.1 using the default value \texttt{fraction\ =\ 1} (i.e., \(1*b\)).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4021,7 +4021,7 @@ First, we test the same hypotheses as in 3.1.1 using the minimal fraction (\emph
 ## Note: BF.u denotes the Bayes factor of the hypothesis at hand versus the unconstrained hypothesis Hu. BF.c denotes the Bayes factor of the hypothesis at hand versus its complement.
 \end{verbatim}
 
-Now we execute the sensitivity analysis by interactively changing the \texttt{fraction} argument to be equal to 2 and 3, respectively:
+Now we execute the sensitivity analysis by interactively changing the \texttt{fraction} argument to be equal to 2 and 3, respectively (i.e., \(2*b\) and \(3*b\)):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4076,7 +4076,7 @@ Now we execute the sensitivity analysis by interactively changing the \texttt{fr
 ## Note: BF.u denotes the Bayes factor of the hypothesis at hand versus the unconstrained hypothesis Hu. BF.c denotes the Bayes factor of the hypothesis at hand versus its complement.
 \end{verbatim}
 
-As it is clear by looking at the results, the \(BF_{0u}\) changes from 11.58 when \texttt{fraction} = 1 to 8.19 and 6.68, when \texttt{fraction} = 2 and 3, respectively. This stems from the fact that the value of the \textbf{complexity} (which is the proportion of the prior distribution that is supported by the (\emph{null}) hypothesis at hand) changes, thus changing the resulting BF's.
+The \(BF_{0u}\) changes from 11.58 when \texttt{fraction} = 1 to 8.19 and 6.68, when \texttt{fraction} = 2 and 3, respectively. This stems from the fact that the value of the \textbf{complexity}, which is the proportion (density) of the prior distribution that is supported by the (\emph{null}) hypothesis at hand changes, thus changing the values of resulting BF's.
 
 \hypertarget{literature}{%
 \chapter*{Literature}\label{literature}}
